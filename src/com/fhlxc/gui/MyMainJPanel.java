@@ -70,6 +70,16 @@ public class MyMainJPanel extends JPanel {
         
     }
     
+    //返回最大化按钮
+    public MyJButton getMaxButton() {
+        return maxButton;
+    }
+    
+    //返回最小化按钮
+    public MyJButton getMinButton() {
+        return minButton;
+    }
+    
     //初始化标题栏的字体
     public void setFont(Font font) {
         this.font = font;
@@ -161,28 +171,6 @@ public class MyMainJPanel extends JPanel {
         maxButton.setImageButton(new ImageIcon(image).getImage());
         //设置按钮的文本内容
         maxButton.setText(textString);
-        //设置按钮的动作监听器，有动作时自动触发
-        maxButton.addActionListener(new ActionListener() {
-            
-            @Override
-            //鼠标单击时触发该事件
-            public void actionPerformed(ActionEvent e) {
-                if (frame.getExtendedState() == JFrame.NORMAL) {
-                    //改变imageButton变量的值，并将最小化的按钮变为不可见，有一个bug，调不好，只好放弃，
-                    //即在最大化状态，最小，之后还原，变为正常状态而不是最大状态
-                    maxButton.setImageButton(new ImageIcon("图片/normal.png").getImage());
-                    minButton.setVisible(false);
-                    //改变窗口的状态，变为最大化状态，会自动调用paintComponent函数
-                    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                } else {
-                    //在最大状态就变小，并将最小化按钮可见
-                    maxButton.setImageButton(new ImageIcon("图片/max.png").getImage());
-                    minButton.setVisible(true);
-                    //使窗口恢复正常
-                    frame.setExtendedState(JFrame.NORMAL);
-                }
-            }
-        });
     }
     
     /**
