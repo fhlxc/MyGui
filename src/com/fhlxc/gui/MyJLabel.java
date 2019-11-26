@@ -59,17 +59,17 @@ public class MyJLabel extends JButton {
         this.textString = "";
         //设置无边框
         setBorderPainted(false);
+        setOpaque(false);
     }
     
     //重载父类的paintComponent函数
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
         if (image != null) {
             //绘制图像，详细解释见MyMainJPanel类中
             g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), color, this);
         }
         
-        if (image == null) {
+        if (image == null && color != null) {
             //画笔的颜色
             g.setColor(color);
             //绘制填色的矩形

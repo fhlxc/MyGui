@@ -126,25 +126,26 @@ public class MyJButton extends JButton {
         //添加鼠标监听器，以实现按钮的不同状态的颜色变化
         this.addMouseListener(new MyMouseListener());
         setBorderPainted(false);
+        setOpaque(false);
     }
     
   //重载了JButton的paintComponent函数，每次需要绘制时会主动调用，例如显示调用repaint函数、窗口状态发生变化……
     public void paintComponent(Graphics g) {
         //调用父类的这个函数，绘制默认的样式，因为有时可能只是改变局部的样式，并不需要改变整个样式
-        super.paintComponent(g);
+        //super.paintComponent(g);
         //不绘制背景图片的时候，imageButton为空
         if (imageButton != null) {
             /**
-            * 功能 绘制背景图片
-            * 参数1 需要绘制的内容
-            * 参数2、3 定位，即从哪个位置开始绘制图片
-            * 参数4、5 大小，设置绘制区域的大小，会自动根据这个区域大小来绘制图片，即与图片大小无关
-            * 参数6 背景颜色，即在什么样的背景上绘制该图片
-            * 参数7 观察者，有什么用目前暂时还不清楚
+                          * 功能 绘制背景图片
+                          * 参数1 需要绘制的内容
+                          * 参数2、3 定位，即从哪个位置开始绘制图片
+                          * 参数4、5 大小，设置绘制区域的大小，会自动根据这个区域大小来绘制图片，即与图片大小无关
+                          * 参数6 背景颜色，即在什么样的背景上绘制该图片
+                          * 参数7 观察者，有什么用目前暂时还不清楚
             */
             g.drawImage(imageButton, 0, 0, this.getWidth(), this.getHeight(), tmpColor, this);
         } 
-        if (imageButton == null) {
+        if (imageButton == null && tmpColor != null) {
             //设置画笔的颜色
             g.setColor(tmpColor);
             //绘制矩形框，会填充举行中间，参数1、2是定位，参数3、4是大小

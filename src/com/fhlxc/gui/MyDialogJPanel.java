@@ -275,14 +275,15 @@ public class MyDialogJPanel extends JPanel {
     //构造函数设置边框布局
     public MyDialogJPanel() {
         setLayout(new BorderLayout(0, 0));
+        setOpaque(false);
     }
     
     //重载绘制函数，实现背景图片和文字
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), backgroundColor, this);
-        } else {
+        } 
+        if (backgroundImage == null && backgroundColor != null) {
             g.setColor(backgroundColor);
             g.fillRect(0, 0, this.getWidth(), this.getHeight());
         }
